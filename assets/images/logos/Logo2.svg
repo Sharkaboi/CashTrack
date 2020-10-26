@@ -1,0 +1,15 @@
+<svg id="Logo2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <filter id="CTr." x="34" y="119" width="432" height="269" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <circle id="Ellipse_1" data-name="Ellipse 1" cx="250" cy="250" r="250" fill="#2f9bc4"/>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#CTr.)">
+    <text id="CTr.-2" data-name="CTr." transform="translate(250 326)" fill="#fff" font-size="214" font-family="Raleway-Black, Raleway" font-weight="800"><tspan x="-206.617" y="0">CTr.</tspan></text>
+  </g>
+</svg>

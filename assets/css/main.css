@@ -1,0 +1,29 @@
+@import url(/assets/css/font.css);
+
+/* Global variables */
+:root {
+    --text-grey: #2b2b2b;
+    --white: #ffffff;
+  }
+
+/* Removing borders and setting global font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+/* Set images to resize according to div area */
+.image {
+    max-width:100%;
+    max-height:100%;
+}
+
+/* */
+.center-page {
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
