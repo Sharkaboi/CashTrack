@@ -27,7 +27,7 @@ A Web app to help manage your budget and expenses.
 * Initial Design - [Made in Adobe XD](https://xd.adobe.com/view/b3a25f63-7351-48d7-6755-3f443c68c410-c593/?fullscreen)
 * Resources Aquirement - Used free [Iconscout](https://iconscout.com/) illustrations and icons, Deployment setup with [Heroku](https://heroku.com/) and [000webhost](https://000webhost.com/).
 * DB Schema design -  
-  ![DB Schema](https://i.imgur.com/yvHp5gn.png)
+  ![DB Schema](./assets/screenshots/schema.png)
 * Front-end coding - Added Home, Login and Register pages.
 * Backend coding - Establised cookie and server setup with sessions.
 
