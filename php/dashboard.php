@@ -1,3 +1,10 @@
+<?php
+
+    include_once dirname(__FILE__) . '\constants.php';
+    
+    $cookie = $_COOKIE[COOKIE_NAME];
+    // take uid from cookie and do fetch
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,12 +25,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/assets/favicon/manifest.json">
+    <link rel="manifest" href="assets/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!--Other-->
-    <title>Sign in into CashTrack!</title>
+    <title>Dashboard</title>
     <!--CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -31,33 +38,6 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <main>
-        <div class="center-page container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h1 class="mb-3 mt-3">Sign in</h1>
-                    <form action="/php/login.php" name="loginForm" method="POST">
-                        <div class="form-group">
-                          <label for="username">Username</label>
-                          <input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Enter username" required>
-                        </div>
-                        <div class="form-group">
-                          <label for="password">Password</label>
-                          <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter Password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                    </form>
-                    <p class="pt-3">
-                        Don't have an account? Create it
-                        <a href="/pages/signup.html">here.</a>
-                    </p>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <img src="/assets/images/illustrations/asset-2.png" class="image mb-3 mt-3" alt="banner">
-                </div>
-            </div>
-        </div>
-    </main>
-
+    
 </body>
 </html>
