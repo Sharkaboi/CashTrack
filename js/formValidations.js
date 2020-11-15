@@ -18,8 +18,7 @@ function validateSignUpForm() {
         alert("Too short of a password!")
         return false;
     } else {
-        
+        // verify username unique-ness.
+        return true;
     }
-    alert("error");
-    return true;
 }
