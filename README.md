@@ -2,7 +2,7 @@
 
 A Web app to help manage your budget and expenses.  
 
-### [Check Deployment here.](https://cashtrack-php.herokuapp.com/)
+### [Check Deployment here.](https://cashtrk.000webhostapp.com/)
 
 ## Features   
 * Login
@@ -16,7 +16,7 @@ A Web app to help manage your budget and expenses.
 * Bootstrap for easy to use components
 * PHP for backend and login
 * Mysql database
-* Heroku and 000webhost for deployment
+* 000webhost for deployment
 
 ## Contribution
 * [Sarath S](https://github.com/Sharkaboi) - System Design/Backend/DB
@@ -25,11 +25,11 @@ A Web app to help manage your budget and expenses.
 ## Workflow log
 * Requirement planning - Planned requirements for design and initial prototyping.
 * Initial Design - [Made in Adobe XD](https://xd.adobe.com/view/b3a25f63-7351-48d7-6755-3f443c68c410-c593/?fullscreen)
-* Resources Aquirement - Used free [Iconscout](https://iconscout.com/) illustrations and icons, Deployment setup with [Heroku](https://heroku.com/) and [000webhost](https://000webhost.com/).
+* Resources Aquirement - Used free [Iconscout](https://iconscout.com/) illustrations and icons, Deployment setup with [000webhost](https://000webhost.com/).
 * DB Schema design -  
   ![DB Schema](./assets/screenshots/schema.png)
 * Front-end coding - Added Home, Login and Register pages.
-* Backend coding - Establised cookie and server setup with sessions.
+* Backend coding - Established cookie and server setup with sessions, Mysql tables are set up.
 
 ## License 
 ```
