@@ -10,6 +10,9 @@ function validateLoginForm() {
     } else if(password.length<8) {
         alert("Too short of a password!");
         return false;
+    } else if(username.length>20){
+        alert("Too long of a username!");
+        return false;
     } else {
         // Still have to check username and password after hashing in php from db and set cookie & session id.
         return true;
@@ -32,8 +35,11 @@ function validateSignUpForm() {
     }  else if(isEmptyOrBlank(repassword)) {
         alert("Password can't be blank!");
         return false;
-    }  else if (password.length <8 ) {
-        alert("Too short of a password!")
+    }  else if (password.length<8) {
+        alert("Too short of a password!");
+        return false;
+    } else if(username.length>20){
+        alert("Too long of a username!");
         return false;
     } else {
         // verify username unique-ness in php, insert if successful after hashing along with cookie & session id.

@@ -1,16 +1,79 @@
 <?php
-    include_once dirname(__FILE__) . '/constants.php';
-    // check if username unique 
-    // hash password 
-    // set cookie and session id and goto dashboard
+
+    // Import constants and secrets.
+    include_once '../../../secrets/mysql_secrets.php';
+    include_once '../../../secrets/app_constants.php';
+    include_once '../db/sql_queries.php';
+
+    // check username and hash password and check from db
+    // if success, set cookie and session id and goto dashboard
     // on failure, show alert and navigate back. 
     $conn = mysqli_connect(MYSQL_SERVER_IP,MYSQL_USER_NAME,MYSQL_PWD,DB_NAME);
-    if($conn){
-        echo "success";
+    $username = $_POST['username'];
+    $pass = $_POST['password'];
+    $curr = (int)$_POST['currency'];
+
+    if(!$conn){
+        mysqli_close($conn);
+        connection_failed_error();
     } else {
-        echo "failure";
+        // check if username exists
+        $result = mysqli_query($conn,check_username($conn,$username));
+        if(mysqli_num_rows($result) > 0) {
+            // username exists
+            mysqli_close($conn);
+            navigate_to_signup_page();
+        } else {
+            // register user and set cookie.
+            $hashed_pass = password_hash($pass,PASSWORD_DEFAULT);
+            $result = mysqli_query($conn,insert_username($conn,$username,$hashed_pass,$curr));
+            if($result) {
+                $result = mysqli_query($conn,insert_session($conn,$username));
+                if($result) {
+                    setcookie(COOKIE_NAME,$username,time()+10 * 365 * 24 * 60 * 60,'/');
+                    mysqli_close($conn);
+                    navigate_to_dashboard();
+                } else {
+                    mysql_error($conn);
+                }
+            } else {
+                mysql_error($conn);
+            }
+        }
+    }
+    
+    function navigate_to_signup_page() {
+        echo '<script>
+        alert("Username already exists!");
+        window.location.href="/pages/signup.html";
+        </script>';
+        exit;
     }
 
+    function navigate_to_dashboard() {
+        echo '<script>
+        window.location.href="/dashboard";
+        </script>';
+        exit;
+    }
+    function connection_failed_error() {
+        echo '<script>
+        alert("Database connection failed!");
+        window.location.href="/";
+        </script>';
+        exit;
+    }
+
+    function mysql_error($conn) {
+        $error = mysqli_error($conn);
+        mysqli_close($conn);
+        echo "$error
+        <script>
+        alert('$error');
+        window.location.href='/pages/signup.html';
+        </script>";
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
