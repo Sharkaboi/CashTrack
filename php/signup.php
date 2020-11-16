@@ -46,7 +46,7 @@
 </head>
 <body>
     <div class="container center-page">
-        <img src="/assets/gifs/loading.gif" alt="Loading....." style="width: 10%;height: auto;">
+        <img src="/assets/gifs/loading.gif" alt="Loading....." style="width: 10%;height: auto;pointer-events: none;">
     </div>
 </body>
 </html>

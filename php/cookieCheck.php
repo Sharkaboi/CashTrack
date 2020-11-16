@@ -19,9 +19,11 @@
             alert("Database connection failed!");
             window.location.href="/";
             </script>';
+            mysqli_close($conn);
+            exit;
         } else {
             $result = mysqli_query($conn,get_session_by_id($cookie_data[SESSION_ID]));
-
+            mysqli_close($conn);
             if(mysqli_num_rows($result) > 0) {
                 // session is active, continue to dashboard.
                 // todo : set last session date to Current sessions table.
@@ -49,10 +51,6 @@
         exit;
     }
 
-    function navigate_to_home_page() {
-        header("Location: /");
-        exit;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +86,7 @@
 </head>
 <body>
     <div class="container center-page">
-        <img src="/assets/gifs/loading.gif" alt="Loading....." style="width: 10%;height: auto;">
+        <img src="/assets/gifs/loading.gif" alt="Loading....." style="width: 10%;height: auto;pointer-events: none;">
     </div>
 </body>
 </html>
