@@ -1,0 +1,2 @@
+php_value display_errors 1
+ErrorDocument 404 /404.html

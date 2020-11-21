@@ -29,7 +29,8 @@ A Web app to help manage your budget and expenses.
 * DB Schema design -  
   ![DB Schema](./assets/screenshots/schema.png)
 * Front-end coding - Added Home, Login and Register pages.
-* Backend coding - Established cookie and server setup with sessions, Mysql tables are set up.
+* DB coding - Established cookie and server setup with sessions, Mysql tables are set up.
+* Backend coding - Setup login and sign up flow along with session management.
 
 ## License 
 ```

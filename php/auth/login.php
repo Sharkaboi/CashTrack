@@ -1,22 +1,3 @@
-<?php
-
-    // Import constants and secrets.
-    include_once '../../../secrets/mysql_secrets.php';
-    include_once '../../../secrets/app_constants.php';
-    include_once __DIR__  . '../db/sql_queries.php';
-
-    // check username and hash password and check from db
-    // if success, set cookie and session id and goto dashboard
-    // on failure, show alert and navigate back. 
-    $conn = mysqli_connect(MYSQL_SERVER_IP,MYSQL_USER_NAME,MYSQL_PWD,DB_NAME);
-    if($conn){
-        echo "success";
-    } else {
-        echo "failure";
-    }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,14 +24,75 @@
     <meta name="theme-color" content="#ffffff">
     <!--Other-->
     <title>Loading....</title>
-    <!--CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--CSS-->
     <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
 </head>
 <body>
     <div class="container center-page">
         <img src="../../assets/gifs/loading.gif" alt="Loading....." style="width: 10%;height: auto;pointer-events: none;">
     </div>
+
+    <?php
+
+    // Connect to db.
+    include('../db/db_config.php');
+    include('../db/sql_queries.php');
+
+    session_start();  
+
+    if(isset($_POST['username']) && isset($_POST['password'])) {
+
+        $username = $_POST['username'];
+        $pass = $_POST['password'];
+
+        // get user with username as given
+        $query = get_user($conn,$username);
+        $result = mysqli_query($conn,$query);
+
+        if(!$result){
+            //DB error
+            navigate_to_login_page(mysqli_errno($conn));
+        } else if(mysqli_num_rows($result) <= 0) {
+            // no account with same username
+            navigate_to_login_page("Username doesn't exist");
+        } else {
+            // Get first row of result (only one row should exist)
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+
+            // strip and escape pass to prevent sql injection
+            $striped_pass = stripcslashes($pass);
+            $mysql_pass = mysqli_real_escape_string($conn,$striped_pass);
+
+            //verify pass after hashing with hashed pass from db
+            if(!password_verify($mysql_pass,$row['hash_pwd'])){
+                // password mismatch
+                navigate_to_login_page("Invalid password");
+            } else {
+                // login successful, set username in session
+                $_SESSION['username'] = $username;
+                navigate_to_dashboard();
+            }
+        }
+    } else {
+        navigate_to_login_page("Cannot get username and password");
+    }
+
+    function navigate_to_login_page($error) {
+        echo '<script>';
+        echo 'alert("Error : '.$error.'");';
+        echo 'window.location.href = "http://localhost/php/pages/login.php";';
+        echo '</script>';
+    }
+    
+    function navigate_to_dashboard() {
+        echo '<script>';
+        echo 'window.location.href = "http://localhost/dashboard";';
+        echo '</script>';
+    }
+
+    mysqli_close($conn);
+?>
+
 </body>
 </html>
