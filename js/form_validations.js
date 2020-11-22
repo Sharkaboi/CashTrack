@@ -14,7 +14,6 @@ function validateLoginForm() {
         alert("Too long of a username!");
         return false;
     } else {
-        // Still have to check username and password after hashing in php from db and set cookie & session id.
         return true;
     }
 }
@@ -42,7 +41,32 @@ function validateSignUpForm() {
         alert("Too long of a username!");
         return false;
     } else {
-        // verify username unique-ness in php, insert if successful after hashing along with cookie & session id.
+        return true;
+    }
+}
+
+function validateAddAmount() {
+    var amount = document.getElementById("addAmount").value;
+    if(isEmptyOrBlank(amount)) {
+        alert("Amount must be filled out!");
+        return false;
+    } else if (amount <= 0) {
+        alert("Invalid amount!\nUse Subtract for reducing.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validateSubAmount() {
+    var amount = document.getElementById("subAmount").value;
+    if(isEmptyOrBlank(amount)) {
+        alert("Amount must be filled out!");
+        return false;
+    } else if (amount <= 0) {
+        alert("Invalid amount!");
+        return false;
+    } else {
         return true;
     }
 }
