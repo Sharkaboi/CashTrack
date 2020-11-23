@@ -47,11 +47,15 @@ function validateSignUpForm() {
 
 function validateAddAmount() {
     var amount = document.getElementById("addAmount").value;
+    var desc = document.getElementById('addDesc').value;
     if(isEmptyOrBlank(amount)) {
         alert("Amount must be filled out!");
         return false;
     } else if (amount <= 0) {
         alert("Invalid amount!\nUse Subtract for reducing.");
+        return false;
+    } else if(isEmptyOrBlank(desc)) {
+        alert("Invalid description");
         return false;
     } else {
         return true;
@@ -60,11 +64,15 @@ function validateAddAmount() {
 
 function validateSubAmount() {
     var amount = document.getElementById("subAmount").value;
+    var desc = document.getElementById('subDesc').value;
     if(isEmptyOrBlank(amount)) {
         alert("Amount must be filled out!");
         return false;
     } else if (amount <= 0) {
         alert("Invalid amount!");
+        return false;
+    } else if(isEmptyOrBlank(desc)) {
+        alert("Invalid description");
         return false;
     } else {
         return true;
