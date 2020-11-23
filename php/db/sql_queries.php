@@ -27,7 +27,7 @@
     }
 
     // Log table queries
-    function get_graph_data($conn,$username) {
+    function get_balance_graph_data($conn,$username) {
         $stripped_username = stripcslashes($username);
         $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
         return "select balance_after,log_date from log where username='$mysql_username' ORDER BY log_date ASC;";
@@ -42,5 +42,16 @@
         $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
         return "select currency_default from user where username='$mysql_username'";
     }
-
+    function get_spending_analysis_graph_data($conn,$username) {
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        // Sql without credit : select count(case type when 1 then 1 else null end) as count_add,count(case type when 2 then 1 else null end) as count_sub  from log WHERE username='test' AND account != 3
+        // Includes credit balance add as count_sub and credit subtract as count_add.
+        return "select count(case when ((type=1 AND account!=3) or (type=2 and account=3)) then 1 else null end) as count_add,count(case when ((type=2 and account!=3) or (type=1 and account=3)) then 1 else null end) as count_sub  from log WHERE username='$mysql_username'";
+    }
+    function get_common_descriptions($conn,$username) {
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        return "select description,count(*) as count FROM log where username='$mysql_username' group by description ";
+    }
 ?>

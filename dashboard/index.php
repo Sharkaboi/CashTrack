@@ -172,42 +172,40 @@
             </div>
         </div>
 
-        <div class="container text-center p-5 h4 u">Statistics</div>
+        <div class="container text-center p-5 h4">Statistics</div>
         <div class="container text-center mb-3">
             Total Balance chart : <br>
-            <div id="chart_div"></div>
+            <div id="div_balance_line_chart"></div>
         </div>
         
         <div class="container p-3">
             <div class="row">
                 <div class="col-sm-12 col-md-6 text-center">
-                    Spending vs Earning : <br>
-                    <div id="chart_div2"></div>
+                    Expenditure : <br>
+                    <div id="div_expenditure_pie_chart"></div>
                 </div>
                 <div class="col-sm-12 col-md-6 text-center">
-                    Credit vs Total : <br>
-                    <div id="chart_div3"></div>
+                    Balance Breakdown : <br>
+                    <div id="div_balance_breakdown"></div>
                 </div>
             </div>
         </div>
 
-        <div class="container text-center mt-3">
+        <div class="container text-center p-3 mb-3">
             Common Descriptions : <br>
-            <table>
-                
-            </table>
+            <div id="div_descriptions_count"></div>
         </div>
         
     </main>
     
     <!--Footer holding add and subtract buttons-->
-    <footer class="footer pt-1 pb-1">
-        <div class="text-center">
-            <button type="button" class="btn btn-success btn-lg rounded-pill m-1" data-toggle="modal" data-target="#addMoney">
-                <i class="fa fa-plus mr-3"></i>Add Amount
+    <footer class="fixed-bottom p-1">
+        <div class="text-right">
+            <button type="button" class="btn btn-success shadow rounded-circle m-1" style="width:64px;height:64px;" data-toggle="modal" data-target="#addMoney">
+                <i class="fa fa-plus"></i>
             </button>
-            <button type="button" class="btn btn-danger btn-lg rounded-pill m-1" data-toggle="modal" data-target="#subMoney">
-                <i class="fa fa-minus mr-3"></i>Subtract Amount
+            <button type="button" class="btn btn-danger shadow rounded-circle m-1" style="width:64px;height:64px;" data-toggle="modal" data-target="#subMoney">
+                <i class="fa fa-minus"></i>
             </button>
         </div>
     </footer>
@@ -239,7 +237,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="addMoneyForm" class="btn btn-primary pr-3 pl-3">Add</button>
+                <button type="submit" form="addMoneyForm" class="btn btn-primary px-3">Add</button>
             </div>
             </div>
         </div>
@@ -271,7 +269,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="subMoneyForm" class="btn btn-primary pr-3 pl-3">Subtract</button>
+                <button type="submit" form="subMoneyForm" class="btn btn-primary px-3">Subtract</button>
             </div>
             </div>
         </div>
