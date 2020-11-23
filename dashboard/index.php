@@ -273,6 +273,11 @@
                         <input type="number" class="form-control form-control-lg" id="addAmount" name="amount" placeholder="Amount in Transaction" required>
                     </div>
                     <div class="form-group">
+                        <label for="addDesc">Description</label>
+                        <input type="text" class="form-control form-control-lg" id="addDesc" name="desc" placeholder="Description" required>
+                    </div>
+                    <input type="hidden" value="<?php echo $cash_bal+$debit_bal; ?>" name="balance">
+                    <div class="form-group">
                         <label for="addAccount">Account</label>
                         <select class="custom-select custom-select-lg" name="account" id="addAccount">
                             <option value="1" selected>Cash</option>
@@ -303,6 +308,10 @@
                     <div class="form-group">
                         <label for="subAmount">Amount</label>
                         <input type="number" class="form-control form-control-lg" id="subAmount" name="amount" placeholder="Amount in Transaction" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subDesc">Description</label>
+                        <input type="text" class="form-control form-control-lg" id="subDesc" name="desc" placeholder="Description" required>
                     </div>
                     <div class="form-group">
                         <label for="account">Account</label>

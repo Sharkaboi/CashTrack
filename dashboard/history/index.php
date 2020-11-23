@@ -30,16 +30,55 @@
     <link rel="stylesheet" href="../../css/fontawesome.all.min.css">
 </head>
 <body>
-    
+        
     <?php
-
         // Import constants and secrets.
-        include('../php/db/db_config.php');
-        include('../php/db/sql_queries.php');
+        include('../../php/db/db_config.php');
+        include('../../php/db/sql_queries.php');
 
-        session_start();
+        if(!isset($_SESSION)) { 
+            session_start(); 
+        }
+
+        // check if session active 
+        if(!isset($_SESSION['username'])){
+            navigate_to_login_page("Not logged in");
+        }
+
+        function navigate_to_login_page($error) {
+            echo '<script>';
+            echo 'alert("Error : '.$error.'");';
+            echo 'window.location.href = "http://localhost/php/pages/login.php";';
+            echo '</script>';
+        }
 
     ?>
+
+    <!-- Header for settings, history-->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="">
+                <img src="../../assets/favicon/android-icon-36x36.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="../">Dashboard</a>
+                    <a class="nav-item nav-link active" href="">History <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="../settings">Settings</a>
+                    <a class="nav-item nav-link" href="../../php/auth/logout.php">Log Out</a>
+                </div>
+                <span class="navbar-text">
+                    Welcome, 
+                    <span class="font-weight-bold">
+                        <?php echo '@'.$_SESSION['username']; ?>
+                    </span>
+                </span>
+            </div>
+        </nav>
+    </header> 
     
     <!--JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
