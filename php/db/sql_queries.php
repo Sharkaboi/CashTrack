@@ -52,6 +52,6 @@
     function get_common_descriptions($conn,$username) {
         $stripped_username = stripcslashes($username);
         $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
-        return "select description,count(*) as count FROM log where username='$mysql_username' group by description ";
+        return "select description,count(*) as count FROM log where username='$mysql_username' group by description order by count desc";
     }
 ?>

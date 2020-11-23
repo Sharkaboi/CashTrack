@@ -76,8 +76,11 @@
                     <a class="nav-item nav-link" href="./settings">Settings</a>
                     <a class="nav-item nav-link" href="../php/auth/logout.php">Log Out</a>
                 </div>
-                <span class="navbar-text font-weight-bold">
-                    <?php echo 'Welcome, @'.$_SESSION['username']; ?>
+                <span class="navbar-text">
+                    Welcome, 
+                    <span class="font-weight-bold">
+                        <?php echo '@'.$_SESSION['username']; ?>
+                    </span>
                 </span>
             </div>
         </nav>
@@ -85,115 +88,160 @@
     
     <!--Main page-->
     <main>
-        <div class="text-center p-5 h3 font-weight-bold">
-            Total Balance : 
+        <div class="alert alert-secondary">
+            <div class="text-center p-3 h3">
+                Total Balance : 
+                <?php 
+                    $currency = "₹";
+                    $query = get_user_currency($conn,$username);
+                    $result = mysqli_query($conn,$query);
+                    if(!$result) {
+                        show_alert("Database error!");
+                    } else {
+                        $row = mysqli_fetch_assoc($result);
+
+                        switch ($row['currency_default']) {
+                            case 1:
+                                echo "₹";
+                                break;
+                            case 2:
+                                $currency = "$";
+                                echo "$";
+                                break;
+                            case 3:
+                                $currency = "£";
+                                echo "£";
+                                break;
+                            default:
+                                $currency = "€";
+                                echo "€";
+                        } 
+
+                        $query = get_total_balance($conn, $username);
+                        $result = mysqli_query($conn,$query);
+                        if(mysqli_num_rows($result) == 0) {
+                            echo "0";
+                        } else {
+                            $row = mysqli_fetch_assoc($result);
+                            echo $row['balance_after'];
+                        }
+                    }
+                ?>
+            </div>
+
+            <!-- Pre fetching balances-->
             <?php 
-                $currency = "₹";
-                $query = get_user_currency($conn,$username);
+                $cash_bal = 0;
+                $credit_bal = 0;
+                $debit_bal = 0;
+                $query = get_balances($conn,$username);
                 $result = mysqli_query($conn,$query);
                 if(!$result) {
                     show_alert("Database error!");
                 } else {
                     $row = mysqli_fetch_assoc($result);
-
-                    switch ($row['currency_default']) {
-                        case 1:
-                            echo "₹";
-                            break;
-                        case 2:
-                            $currency = "$";
-                            echo "$";
-                            break;
-                        case 3:
-                            $currency = "£";
-                            echo "£";
-                            break;
-                        default:
-                            $currency = "€";
-                            echo "€";
-                    } 
-
-                    $query = get_total_balance($conn, $username);
-                    $result = mysqli_query($conn,$query);
-                    if(mysqli_num_rows($result) == 0) {
-                        echo "0";
-                    } else {
-                        $row = mysqli_fetch_assoc($result);
-                        echo $row['balance_after'];
-                    }
+                    $cash_bal = $row['cash_bal'];
+                    $credit_bal = $row['credit_bal'];
+                    $debit_bal = $row['debit_bal'];
                 }
             ?>
+
+            <!-- Setting balances with currency-->
+            <div class="container p-3">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 p-1">
+                        <div class="card text-center border-secondary">
+                            <div class="card-header text-white bg-success">Cash Balance</div>
+                            <div class="card-body">
+                                <?php echo $currency.$cash_bal; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 p-1">
+                        <div class="card text-center border-secondary">
+                            <div class="card-header text-white bg-success">Debit Balance</div>
+                            <div class="card-body">
+                                <?php echo $currency.$debit_bal; ?>
+                            </div>
+                        </div>                
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 p-1">
+                        <div class="card text-center border-secondary">
+                            <div class="card-header text-white bg-danger">Credit Balance</div>
+                            <div class="card-body">
+                                <?php echo $currency.$credit_bal; ?>
+                            </div>
+                        </div>                
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Pre fetching balances-->
-        <?php 
-            $cash_bal = 0;
-            $credit_bal = 0;
-            $debit_bal = 0;
-            $query = get_balances($conn,$username);
-            $result = mysqli_query($conn,$query);
-            if(!$result) {
-                show_alert("Database error!");
-            } else {
-                $row = mysqli_fetch_assoc($result);
-                $cash_bal = $row['cash_bal'];
-                $credit_bal = $row['credit_bal'];
-                $debit_bal = $row['debit_bal'];
-            }
-        ?>
+        <div class="container p-3">
+            <div class="card">
+                <div class="card-header">Total Balance chart</div> 
+                <div class="card-body">
+                    <div id="div_balance_line_chart"></div>
+                </div>
+            </div>
+        </div>
 
-        <!-- Setting balances with currency-->
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-                    <div class="card text-center border-success">
-                        <div class="card-header">Cash Balance</div>
+
+                <div class="col-sm-12 col-md-6 p-3">
+                    <div class="card">
+                        <div class="card-header">Expenditure</div> 
                         <div class="card-body">
-                            <?php echo $currency.$cash_bal; ?>
+                            <div id="div_expenditure_pie_chart"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-                    <div class="card text-center border-success">
-                        <div class="card-header">Debit Balance</div>
+
+                <div class="col-sm-12 col-md-6 p-3">
+                    <div class="card">
+                        <div class="card-header">Balance Breakdown</div> 
                         <div class="card-body">
-                            <?php echo $currency.$debit_bal; ?>
+                            <div id="div_balance_breakdown"></div>
                         </div>
-                    </div>                
+                    </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-                    <div class="card text-center border-danger">
-                        <div class="card-header">Credit Balance</div>
-                        <div class="card-body">
-                            <?php echo $currency.$credit_bal; ?>
-                        </div>
-                    </div>                
-                </div>
+
             </div>
         </div>
 
-        <div class="container text-center p-5 h4">Statistics</div>
-        <div class="container text-center mb-3">
-            Total Balance chart : <br>
-            <div id="div_balance_line_chart"></div>
-        </div>
-        
         <div class="container p-3">
-            <div class="row">
-                <div class="col-sm-12 col-md-6 text-center">
-                    Expenditure : <br>
-                    <div id="div_expenditure_pie_chart"></div>
-                </div>
-                <div class="col-sm-12 col-md-6 text-center">
-                    Balance Breakdown : <br>
-                    <div id="div_balance_breakdown"></div>
+            <div class="card">
+                <div class="card-header">Common Descriptions</div> 
+                <div class="card-body">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Description</th>
+                                <th scope="col">Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $query = get_common_descriptions($conn,$username);
+                                $result = mysqli_query($conn,$query);
+                                if(!$result) {
+                                  show_alert("Data could not be fetched!");
+                                } else {
+                                    while($row = mysqli_fetch_assoc($result)) {
+                                        echo '<tr>';
+                                        $description = $row["description"];
+                                        $count = $row["count"];
+                                        echo '<td>'.$description.'</td>';
+                                        echo '<td>'.$count.'</td>';
+                                        echo '</tr>';
+                                    }
+                                }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-
-        <div class="container text-center p-3 mb-3">
-            Common Descriptions : <br>
-            <div id="div_descriptions_count"></div>
         </div>
         
     </main>

@@ -33,14 +33,6 @@
             generate_breakdown_bar_chart_js_from_result($result);
           }
 
-          $query = get_common_descriptions($conn,$username);
-          $result = mysqli_query($conn,$query);
-          if(!$result) {
-            show_alert("Data could not be fetched!");
-          } else {
-            generate_common_description_table_js_from_result($result);
-          }
-
           setup_js_event_handlers();
           close_js_block();
         }
@@ -51,7 +43,7 @@
         }
 
         function init_charts() {
-          $js = "google.charts.load('current', {packages: ['corechart','table']}); google.charts.setOnLoadCallback(drawBalanceLineChart); google.charts.setOnLoadCallback(drawExpenditurePieChart); google.charts.setOnLoadCallback(drawBreakdownBarChart); google.charts.setOnLoadCallback(drawDescriptionsTable); ";
+          $js = "google.charts.load('current', {packages: ['corechart','table']}); google.charts.setOnLoadCallback(drawBalanceLineChart); google.charts.setOnLoadCallback(drawExpenditurePieChart); google.charts.setOnLoadCallback(drawBreakdownBarChart); ";
           echo "$js";
         }
 
@@ -88,17 +80,6 @@
           $js .= "['Debit', $debit_bal, '#68838B'],";
           $js .= "['Credit', $credit_bal, '#0D4F8B']";
           $js .= " ]); var options = {  hAxis: { title: 'Balance', minValue: 0 }, vAxis: { title: 'Account' }, bar: {groupWidth: '95%'}, legend: { position: 'none' } }; var chart = new google.visualization.BarChart(document.getElementById('div_balance_breakdown')); chart.draw(data, options); } "; 
-          echo "$js";
-        }
-
-        function generate_common_description_table_js_from_result($result) {
-          $js = " function drawDescriptionsTable() { var data = new google.visualization.DataTable(); data.addColumn('string', 'Description'); data.addColumn('number', 'Count'); data.addRows([ ";
-          while($row = mysqli_fetch_assoc($result)) {
-            $description = $row["description"];
-            $count = $row["count"];
-            $js .= "['$description', $count], ";
-          }
-          $js .= " ]); var options = { width: '80%', height: '80%' }; var chart = new google.visualization.Table(document.getElementById('div_descriptions_count')); chart.draw(data, options); } "; 
           echo "$js";
         }
 
