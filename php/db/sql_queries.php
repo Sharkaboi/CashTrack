@@ -81,7 +81,7 @@
         //$sql2 = "update user set $field=$field+$mysql_amount where username=$mysql_username";
         return $sql;
     }
-    function update_user_bal($conn,$username,int $account,int $type,int $amount,$description,int $new_balance_before,int $new_balance_after) {
+    function update_user_add_bal($conn,$username,int $account,int $type,int $amount,$description,int $new_balance_before,int $new_balance_after) {
         $stripped_username = stripcslashes($username);
         $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
         $mysql_account = mysqli_real_escape_string($conn,$account);
@@ -104,6 +104,15 @@
         }
         //$sql = "insert into log (username,type,account,amount,description,balance_before,balance_after) VALUES ('$mysql_username',$mysql_type,$mysql_account,$mysql_amount,'$mysql_desc',$mysql_balance_before,$mysql_balance_after)";
         $sql2 = "update user set $field=$field+$mysql_amount where username='$mysql_username'";
+        return $sql2;
+    }
+    function update_user_sub_bal($conn,$username,$field,int $amount) {
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        $mysql_field = mysqli_real_escape_string($conn,$field);
+        $mysql_amount = mysqli_real_escape_string($conn,$amount);
+        //$sql = "insert into log (username,type,account,amount,description,balance_before,balance_after) VALUES ('$mysql_username',$mysql_type,$mysql_account,$mysql_amount,'$mysql_desc',$mysql_balance_before,$mysql_balance_after)";
+        $sql2 = "update user set $field=$field-$mysql_amount where username='$mysql_username'";
         return $sql2;
     }
 ?>

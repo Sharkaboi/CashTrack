@@ -3,7 +3,7 @@
     include('../db/sql_queries.php');
     session_start();
 
-    if(!isset($_SESSION['username']) || !isset($_POST['amount']) || !isset($_POST['account'])) {
+    if(!isset($_SESSION['username']) || !isset($_POST['amount']) || !isset($_POST['account']) || !isset($_POST['desc'])) {
         navigate_to_login_page("Error sending data!");
     } else {
         $username = $_SESSION['username'];
@@ -24,21 +24,21 @@
         mysqli_autocommit($conn,FALSE);
         $query_1 = add_to_log($conn,$username,$account,$type,$amount,$description,$new_balance_before,$new_balance_after);
         $result = mysqli_query($conn,$query_1);
-        $query_2 = update_user_bal($conn,$username,$account,$type,$amount,$description,$new_balance_before,$new_balance_after);
+        $query_2 = update_user_add_bal($conn,$username,$account,$type,$amount,$description,$new_balance_before,$new_balance_after);
         $result = mysqli_query($conn,$query_2);
         $commit = mysqli_commit($conn);
         mysqli_autocommit($conn,TRUE);
         if (!$commit) {
-            navigate_to_login_page(mysqli_error($conn));
+            navigate_to_dashboard_with_error("Database error");
         } else {
             navigate_to_dashboard();
         }
     }
 
-    function navigate_to_login_page($error) {
+    function navigate_to_dashboard_with_error($error) {
         echo '<script>';
         echo 'alert("Error : '.$error.'");';
-        echo 'window.location.href = "http://localhost/php/pages/login.php";';
+        echo 'window.location.href = "http://localhost/dashboard";';
         echo '</script>';
     }
 
@@ -47,4 +47,6 @@
         echo 'window.location.href = "http://localhost/dashboard";';
         echo '</script>';
     }
+    
+    mysqli_close($conn);
 ?>

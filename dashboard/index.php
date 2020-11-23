@@ -316,6 +316,7 @@
                         <label for="subDesc">Description</label>
                         <input type="text" class="form-control form-control-lg" id="subDesc" name="desc" placeholder="Description" required>
                     </div>
+                    <input type="hidden" value="<?php echo $cash_bal+$debit_bal; ?>" name="balance">
                     <div class="form-group">
                         <label for="account">Account</label>
                         <select class="custom-select custom-select-lg" name="account" id="subAccount">
