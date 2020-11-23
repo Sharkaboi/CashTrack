@@ -66,19 +66,144 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav mr-auto">
                     <a class="nav-item nav-link" href="../">Dashboard</a>
-                    <a class="nav-item nav-link active" href="">History <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" href=".">History <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="../settings">Settings</a>
-                    <a class="nav-item nav-link" href="../../php/auth/logout.php">Log Out</a>
+                    <a class="nav-item nav-link text-danger" href="../../php/auth/logout.php">Log Out</a>
                 </div>
-                <span class="navbar-text">
+                <span class="navbar-text ml-auto mr-3">
                     Welcome, 
                     <span class="font-weight-bold">
                         <?php echo '@'.$_SESSION['username']; ?>
                     </span>
                 </span>
+                <form class="form-inline" action="" method="GET">
+                    <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
+                    <input class="btn btn-outline-primary my-2 my-sm-0" type="submit" value="Search">
+                </form>
             </div>
         </nav>
     </header> 
+
+    <main class="p-3">
+        <div class="card container p-1">
+            <div class="card-header">History Log</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="table-active">
+                                <th scope="col">Type</th>
+                                <th scope="col">Account</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Balance Before</th>
+                                <th scope="col">Balance After</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $username = $_SESSION['username'];
+                                $query = get_user_currency($conn,$username);
+                                $result = mysqli_query($conn,$query);
+                                if(!$result) {
+                                    show_alert("Database error!");
+                                } else {
+                                    $row = mysqli_fetch_assoc($result);
+
+                                    switch ($row['currency_default']) {
+                                        case 1:
+                                            $currency = "₹";
+                                            break;
+                                        case 2:
+                                            $currency = "$";
+                                            break;
+                                        case 3:
+                                            $currency = "£";
+                                            break;
+                                        default:
+                                            $currency = "€";
+                                    }
+                                } 
+
+                                if(isset($_GET['query'])){
+                                    $search_query = $_GET['query'];
+                                    $query = get_log_by_query($conn,$username,$search_query);
+                                    $result = mysqli_query($conn,$query);
+                                    render_from_data($conn,$username,$currency,$result);
+                                } else {
+                                    $query = get_all_logs($conn,$username);
+                                    $result = mysqli_query($conn,$query);
+                                    render_from_data($conn,$username,$currency,$result);
+                                }
+
+                                function render_from_data($conn,$username,$currency,$result) {
+                                    if(mysqli_num_rows($result)==0) {
+                                        echo '<tr><td colspan="7" class="text-center">No history available.</td></tr>';
+                                    } else {
+                                        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                            $type = $row['type'];
+                                            $account = $row['account'];
+                                            $amount = $row['amount'];
+                                            $date = $row['log_date'];
+                                            $desc = $row['description'];
+                                            $balance_before = $row['balance_before'];
+                                            $balance_after = $row['balance_after'];
+                                            echo '<tr>';
+                                            echo '<td>';
+                                            if($type == 1) {
+                                                echo '<i class="fa fa-plus text-success"></i>';
+                                            } else {
+                                                echo '<i class="fa fa-minus text-danger"></i>';
+                                            }
+                                            echo '</td>';
+                                            echo '<td>';
+                                            switch($account) {
+                                                case 1 :
+                                                    echo 'Cash';
+                                                break;
+                                                case 2 :
+                                                    echo 'Debit';
+                                                break;
+                                                case 3 :
+                                                    echo 'Credit';
+                                                break;
+                                            }
+                                            echo '</td>';
+                                            echo '<td>';
+                                            echo $currency.$amount;
+                                            echo '</td>';
+                                            echo '<td>';
+                                            echo $date;
+                                            echo '</td>';
+                                            echo '<td>';
+                                            echo $desc;
+                                            echo '</td>';
+                                            echo '<td>';
+                                            echo $currency.$balance_before;
+                                            echo '</td>';
+                                            echo '<td>';
+                                            echo $currency.$balance_after;
+                                            echo '</td>';                                    
+                                            echo '</tr>';
+                                        }
+                                    }
+                                }
+
+                                function show_alert($error) {
+                                    echo '<script>';
+                                    echo 'alert("Error : '.$error.'");';
+                                    echo '</script>';
+                                }
+
+                                mysqli_close($conn);
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
     
     <!--JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

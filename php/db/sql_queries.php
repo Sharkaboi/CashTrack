@@ -54,6 +54,22 @@
         $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
         return "select description,count(*) as count FROM log where username='$mysql_username' group by description order by count desc";
     }
+    function get_all_logs($conn,$username) {
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        return "select type,account,amount,log_date,description,balance_after,balance_before from log where username='$mysql_username' order BY log_date desc";
+    }
+    function get_log_by_query($conn,$username,$query) {
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        $stripped_query = stripcslashes($query);
+        $mysql_query = mysqli_real_escape_string($conn,$stripped_query);
+        if(trim($mysql_query) === ''){
+            return get_all_logs($conn,$username);
+        } else {
+            return "select * from log where username='$mysql_username' and match(description) against('$mysql_query' in natural language mode) order by log_date desc";
+        }
+    }
 
     //Relative statements
     function add_to_log($conn,$username,int $account,int $type,int $amount,$description,int $new_balance_before,int $new_balance_after) {

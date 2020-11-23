@@ -68,8 +68,8 @@
                 <div class="navbar-nav mr-auto">
                     <a class="nav-item nav-link" href="../">Dashboard</a>
                     <a class="nav-item nav-link" href="../history">History</a>
-                    <a class="nav-item nav-link active" href="">Settings <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="../../php/auth/logout.php">Log Out</a>
+                    <a class="nav-item nav-link active" href=".">Settings <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link text-danger" href="../../php/auth/logout.php">Log Out</a>
                 </div>
                 <span class="navbar-text">
                     Welcome, 
