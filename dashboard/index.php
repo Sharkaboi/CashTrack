@@ -199,16 +199,14 @@
     </main>
     
     <!--Footer holding add and subtract buttons-->
-    <footer class="fixed-bottom p-1">
-        <div class="text-right">
-            <button type="button" class="btn btn-success shadow rounded-circle m-1" style="width:64px;height:64px;" data-toggle="modal" data-target="#addMoney">
-                <i class="fa fa-plus"></i>
-            </button>
-            <button type="button" class="btn btn-danger shadow rounded-circle m-1" style="width:64px;height:64px;" data-toggle="modal" data-target="#subMoney">
-                <i class="fa fa-minus"></i>
-            </button>
-        </div>
-    </footer>
+    <div class="p-1" style="position:fixed;right:0;bottom:0;">
+        <button type="button" class="btn btn-success shadow rounded-circle m-1" style="width:64px;height:64px;" data-toggle="modal" data-target="#addMoney">
+            <i class="fa fa-plus"></i>
+        </button>
+        <button type="button" class="btn btn-danger shadow rounded-circle m-1" style="width:64px;height:64px;" data-toggle="modal" data-target="#subMoney">
+            <i class="fa fa-minus"></i>
+        </button>
+    </div>
 
     <!--Modal dialogs for adding and subtracting money-->
     <div class="modal fade" id="addMoney" tabindex="-1" role="dialog" aria-labelledby="addMoneyCenterTitle" aria-hidden="true">
