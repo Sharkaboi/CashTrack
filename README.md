@@ -31,7 +31,10 @@ A Web app to help manage your budget and expenses.
 * Front-end coding - Added Home, Login and Register pages.
 * DB coding - Established cookie and server setup with sessions, Mysql tables are set up.
 * Backend coding - Setup login and sign up flow along with session management.
-
+* Backend coding - Setup log out
+* Backend coding - Setup up dashboard page
+* Backend coding - Setup up history page with search
+* Backend coding - Setup Google Charts JS
 ## License 
 ```
 MIT License

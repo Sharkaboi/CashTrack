@@ -214,7 +214,7 @@
             <div class="card">
                 <div class="card-header">Common Descriptions</div> 
                 <div class="card-body">
-                    <table class="table table-bordered text-center">
+                    <table class="table table-bordered text-center text-capitalize">
                         <thead>
                             <tr class="table-primary">
                                 <th scope="col">Description</th>
