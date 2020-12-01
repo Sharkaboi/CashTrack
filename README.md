@@ -43,6 +43,8 @@ User table           |  Log table
 ![](assets/screenshots/User%20table.png)  |  ![](assets/screenshots/Log%20table.png)
 
 ## Folder structure 
+Folder structure          |
+:-------------------------:
 ![](assets/screenshots/Folder%20Structure.png) 
 
 ## Workflow log
