@@ -1,5 +1,11 @@
 {
- "name": "App",
+ "name": "CashTrack",
+ "short_name": "CashTrack",
+ "start_url": ".",
+ "display": "standalone",
+ "background_color": "#fff",
+ "description": "All in one solution for managing your expenses.",
+ "categories": ["finance", "productivity", "utilities"],
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
