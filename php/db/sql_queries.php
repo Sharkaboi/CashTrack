@@ -23,6 +23,16 @@
         $hashed_pass = password_hash($mysql_pass,PASSWORD_DEFAULT);
         return "update user set hash_pwd='$hashed_pass' where username='$mysql_username'";
     }
+    function delete_account($conn,$username) {
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        return "delete from user where username='$mysql_username'";
+    }
+    function delete_data($conn,$username) {
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        return "delete from log where username='$mysql_username'";
+    }
 
     // User table queries
     function get_user($conn,$username) {

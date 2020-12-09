@@ -148,11 +148,11 @@
         <div class="container py-5">
             <div class="row mb-auto mt-auto">
                 <div class=" col-sm-12 col-md-6 text-center p-1">
-                    <button class="btn btn-danger btn-lg m-1">Delete Account</button><br>
+                    <button class="btn btn-danger btn-lg m-1" onclick="confirmDeleteAccount()">Delete Account</button><br>
                     <small class="text-muted">Deletes your account permanently.</small>
                 </div>
                 <div class="col-sm-12 col-md-6 text-center p-1">
-                    <button class="btn btn-danger btn-lg m-1">Reset Data</button><br>
+                    <button class="btn btn-danger btn-lg m-1" onclick="confirmResetData()">Reset Data</button><br>
                     <small class="text-muted">This only deletes your price history and not your account.</small>
                 </div>
             </div>
@@ -161,6 +161,7 @@
 
     <!--JS-->
     <script src="../../js/form_validations.js"></script>
+    <script src="../../js/event_listeners.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   
