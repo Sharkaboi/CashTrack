@@ -50,10 +50,12 @@
             navigate_to_settings_page("Cannot get username or new password");
     }
     
-        function navigate_to_settings_page($error) {
-            echo '<script>';
-            echo 'alert("Error : '.$error.'");';
-            echo 'window.location.href = "http://localhost/dashboard/settings/index.php";';
-            echo '</script>';
-        }
+    function navigate_to_settings_page($error) {
+        echo '<script>';
+        echo 'alert("Error : '.$error.'");';
+        echo 'window.location.href = "http://localhost/dashboard/settings/index.php";';
+        echo '</script>';
+    }
+    
+    mysqli_close($conn);
 ?>

@@ -35,6 +35,12 @@
         $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
         return "select credit_bal,debit_bal,cash_bal from user where username='$mysql_username'";
     }
+    function update_currency($conn,$username,int $currency){
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        $mysql_currency = mysqli_real_escape_string($conn,"".$currency);
+        return "update user set currency_default=$mysql_currency where username='$mysql_username'";
+    }
 
     // Log table queries
     function get_balance_graph_data($conn,$username) {
