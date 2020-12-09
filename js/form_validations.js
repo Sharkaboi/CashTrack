@@ -45,6 +45,29 @@ function validateSignUpForm() {
     }
 }
 
+function validateAccountSettingsForm(){
+    var cpassword = document.getElementById("cpassword").value;
+    var npassword = document.getElementById("npassword").value;
+    if (isEmptyOrBlank(cpassword)) {
+        alert("Current password must be filled out!");
+        return false;
+    } else if(isEmptyOrBlank(npassword)) {
+        alert("Password can't be blank!");
+        return false;
+    } else if (cpassword.length<8) {
+        alert("Too short of a password!");
+        return false;
+    } else if (npassword.length<8) {
+        alert("Too short of a password!");
+        return false;
+    }  else if (npassword == cpassword) {
+        alert("Passwords cannot be identical!");
+        return false;
+    } else {
+        return true;
+    }
+}
+
 function validateAddAmount() {
     var amount = document.getElementById("addAmount").value;
     var desc = document.getElementById('addDesc').value;

@@ -81,9 +81,86 @@
         </nav>
     </header>   
 
-        
+    <?php
+        $username = $_SESSION['username'];
+        $query = get_user_currency($conn,$username);
+        $result = mysqli_query($conn,$query);
+        if(!$result) {
+            show_alert("Database error!");
+        } else {
+            $row = mysqli_fetch_assoc($result);
+            $currencyChoice = $row['currency_default'];
+        } 
+    ?>
+
+    <main>
+        <div class="container pt-5">
+            <div class="card">
+                <h5 class="card-header">Account Settings</h5>
+                <div class="card-body">
+                    <form action="../../php/auth/password_change.php" onsubmit="return validateAccountSettingsForm()" method="post">
+                        <div class="form-group">
+                            <label for="cpassword">Enter Current Password</label>
+                            <input type="password" class="form-control form-control-lg" id="cpassword" name="cpassword" placeholder="Enter Current Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpassword">Enter New Password</label>
+                            <input type="password" class="form-control form-control-lg" id="npassword" name="npassword" placeholder="Enter New Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg m-1">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pt-3">
+            <div class="card">
+                <h5 class="card-header">Account Preferences</h5>
+                <div class="card-body">
+                    <form action="../../php/routines/update_currency.php" method="post">
+                        <div class="form-group">
+                            <label for="currency">Currency prefix</label>
+                            <select class="custom-select custom-select-lg" name="currency" id="currency">
+                                <?php
+                                    switch ($currencyChoice) {
+                                        case 1:
+                                            echo '<option value="1" selected>INR</option><option value="2">USD</option><option value="3">GBP</option><option value="4">EUR</option>';
+                                            break;
+                                        case 2:
+                                            echo '<option value="1">INR</option><option value="2" selected>USD</option><option value="3">GBP</option><option value="4">EUR</option>';
+                                            break;
+                                        case 3:
+                                            echo '<option value="1">INR</option><option value="2">USD</option><option value="3" selected>GBP</option><option value="4">EUR</option>';
+                                            break;
+                                        default:
+                                            echo '<option value="1">INR</option><option value="2">USD</option><option value="3">GBP</option><option value="4" selected>EUR</option>';
+                                            break;
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg m-1">Change currency prefix</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-5">
+            <div class="row mb-auto mt-auto">
+                <div class=" col-sm-12 col-md-6 text-center p-1">
+                    <button class="btn btn-danger btn-lg m-1">Delete Account</button><br>
+                    <small class="text-muted">Deletes your account permanently.</small>
+                </div>
+                <div class="col-sm-12 col-md-6 text-center p-1">
+                    <button class="btn btn-danger btn-lg m-1">Reset Data</button><br>
+                    <small class="text-muted">This only deletes your price history and not your account.</small>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!--JS-->
+    <script src="../../js/form_validations.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   

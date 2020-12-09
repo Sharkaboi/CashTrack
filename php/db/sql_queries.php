@@ -15,6 +15,16 @@
         $hashed_pass = password_hash($mysql_pass,PASSWORD_DEFAULT);
         return "INSERT INTO `user`(`username`, `hash_pwd`, `currency_default`) VALUES ('$mysql_username','$hashed_pass',$mysql_currency)";
     }
+    function update_password($conn,$username,$npassword) {
+        $stripped_username = stripcslashes($username);
+        $stripped_pass = stripcslashes($npassword);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        $mysql_pass = mysqli_real_escape_string($conn,$stripped_pass);
+        $hashed_pass = password_hash($mysql_pass,PASSWORD_DEFAULT);
+        return "update user set hash_pwd='$hashed_pass' where username='$mysql_username'";
+    }
+
+    // User table queries
     function get_user($conn,$username) {
         $stripped_username = stripcslashes($username);
         $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
