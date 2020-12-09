@@ -20,6 +20,7 @@
         if (!$commit) {
             navigate_to_settings_page("Database error");
         } else {
+            session_destroy();
             navigate_to_homepage_with_alert();
         }
     }
@@ -44,4 +45,6 @@
         echo 'window.location.href = "http://localhost/";';
         echo '</script>';
     }
+
+    mysqli_close($conn);
 ?>
