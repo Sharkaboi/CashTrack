@@ -88,7 +88,7 @@
     function get_all_logs($conn,$username) {
         $stripped_username = stripcslashes($username);
         $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
-        return "select type,account,amount,log_date,description,balance_after,balance_before from log where username='$mysql_username' order BY log_date desc";
+        return "select log_id,type,account,amount,log_date,description,balance_after,balance_before from log where username='$mysql_username' order BY log_date desc";
     }
     function get_log_by_query($conn,$username,$query) {
         $stripped_username = stripcslashes($username);
@@ -100,6 +100,13 @@
         } else {
             return "select * from log where username='$mysql_username' and match(description) against('$mysql_query' in natural language mode) order by log_date desc";
         }
+    }
+    function update_description($conn,int $logId,$description) {
+        $stripped_logId = stripcslashes($logId);
+        $mysql_logId = mysqli_real_escape_string($conn,$stripped_logId);
+        $stripped_description = stripcslashes($description);
+        $mysql_description = mysqli_real_escape_string($conn,$stripped_description);
+        return "update log set description='$mysql_description' where log_id=$mysql_logId";
     }
 
     //Relative statements

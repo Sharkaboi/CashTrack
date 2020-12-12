@@ -124,6 +124,21 @@ function validateTransferAmount() {
     }
 }
 
+function getUpdatedDescription() {
+    var currentDesc = document.getElementById("currentDesc");
+    var updatedDesc = prompt("Edit Description");
+    // stop form submit if no desc or same desc
+    if(updatedDesc == null || updatedDesc==currentDesc.value){
+        return false;
+    } else if(isEmptyOrBlank(updatedDesc)){
+        alert("Invalid description");
+        return false;
+    } else {
+        currentDesc.value = updatedDesc;
+        return true;
+    }
+}
+
 function isEmptyOrBlank(string) {
     if(string == "" || string === "" || !string || /^\s*$/.test(string)) {
         return true;

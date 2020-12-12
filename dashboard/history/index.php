@@ -57,7 +57,7 @@
     <!-- Header for settings, history-->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="http://localhost">
                 <img src="../../assets/favicon/android-icon-36x36.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,7 @@
                     </span>
                 </span>
                 <form class="form-inline" action="" method="GET">
-                    <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="text" name="query" placeholder="Enter Query here" aria-label="Search">
                     <input class="btn btn-outline-primary my-2 my-sm-0" type="submit" value="Search">
                 </form>
             </div>
@@ -89,7 +89,7 @@
             <div class="card-header">History Log</div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover text-center">
                         <thead>
                             <tr class="table-active">
                                 <th scope="col">Type</th>
@@ -142,10 +142,13 @@
                                         echo '<tr><td colspan="7" class="text-center">No history available.</td></tr>';
                                     } else {
                                         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                            $log_id = $row['log_id'];
                                             $type = $row['type'];
                                             $account = $row['account'];
                                             $amount = $row['amount'];
                                             $date = $row['log_date'];
+                                            $phpdate = strtotime( $date );
+                                            $date = date('d/m/y g:i A', $phpdate );
                                             $desc = $row['description'];
                                             $balance_before = $row['balance_before'];
                                             $balance_after = $row['balance_after'];
@@ -191,7 +194,13 @@
                                             echo $date;
                                             echo '</td>';
                                             echo '<td>';
+                                            //Update description button form
+                                            echo '<form action="../../php/routines/update_description.php" onsubmit="return getUpdatedDescription()" method="post">';
                                             echo $desc;
+                                            echo '<input type="hidden" value="'.$desc.'" name="currentDesc" id="currentDesc">';
+                                            echo '<input type="hidden" value="'.$log_id.'" name="logId" id="logId">';
+                                            echo '<button type="submit" class="btn"><i class="fa fa-pencil-alt text-dark"></i></button>';
+                                            echo '</form>';
                                             echo '</td>';
                                             echo '<td>';
                                             echo $currency.$balance_before;
@@ -218,9 +227,10 @@
             </div>
         </div>
     </main>
-        //TODO : add delete log and update log functionality.
+    <!--TODO : add delete log and update log functionality.-->
     
     <!--JS-->
+    <script src="../../js/form_validations.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   
