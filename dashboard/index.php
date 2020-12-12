@@ -254,9 +254,12 @@
         <button type="button" class="btn btn-danger shadow rounded-circle m-1" style="width:64px;height:64px;" data-toggle="modal" data-target="#subMoney">
             <i class="fa fa-minus"></i>
         </button>
+        <button type="button" class="btn btn-warning shadow rounded-circle m-1" style="width:64px;height:64px;" data-toggle="modal" data-target="#transferMoney">
+            <i class="fa fa-exchange-alt text-white"></i>
+        </button>
     </div>
 
-    <!--Modal dialogs for adding and subtracting money-->
+    <!--Modal dialogs for adding and subtracting money and transfer money-->
     <div class="modal fade" id="addMoney" tabindex="-1" role="dialog" aria-labelledby="addMoneyCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -332,6 +335,53 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" form="subMoneyForm" class="btn btn-primary px-3">Subtract</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="transferMoney" tabindex="-1" role="dialog" aria-labelledby="transferMoneyCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="transferMoneyLongTitle">Transfer balance</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="../php/routines/transfer_money.php" method="post" onsubmit="return validateTransferAmount()" id="transferMoneyForm">
+                    <div class="form-group">
+                        <label for="transferAmount">Amount</label>
+                        <input type="number" class="form-control form-control-lg" id="transferAmount" name="amount" placeholder="Amount in Transaction" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="transferDesc">Description</label>
+                        <input type="text" class="form-control form-control-lg" id="transferDesc" name="desc" placeholder="Description" required>
+                    </div>
+                    <input type="hidden" value="<?php echo $cash_bal+$debit_bal; ?>" name="balance">
+                    <div class="form-group">
+                        <label for="transferFAccount">From Account</label>
+                        <select class="custom-select custom-select-lg" name="faccount" id="transferFAccount">
+                            <option value="1" selected>Cash</option>
+                            <option value="2">Debit</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="transferTAccount">To Account</label>
+                        <select class="custom-select custom-select-lg" name="taccount" id="transferTAccount">
+                            <option value="1" selected>Cash</option>
+                            <option value="2">Debit</option>
+                            <option value="3">Credit</option>
+                        </select>
+                    </div>
+                    <div class="transfer-credit-alert collapse alert alert-warning">
+                        Warning : Transferring to credit means that you're paying back the debt.
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="transferMoneyForm" class="btn btn-primary px-3">Transfer</button>
             </div>
             </div>
         </div>

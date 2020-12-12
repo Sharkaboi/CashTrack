@@ -153,8 +153,10 @@
                                             echo '<td>';
                                             if($type == 1) {
                                                 echo '<i class="fa fa-plus text-success"></i>';
-                                            } else {
+                                            } else if($type == 2){
                                                 echo '<i class="fa fa-minus text-danger"></i>';
+                                            } else {
+                                                echo '<i class="fa fa-exchange-alt text-warning"></i>';
                                             }
                                             echo '</td>';
                                             echo '<td>';
@@ -167,6 +169,18 @@
                                                 break;
                                                 case 3 :
                                                     echo 'Credit';
+                                                break;
+                                                case 12 :
+                                                    echo 'Cash to Debit';
+                                                break;
+                                                case 21 :
+                                                    echo 'Debit to Cash';
+                                                break;
+                                                case 13 :
+                                                    echo 'Cash to Credit';
+                                                break;
+                                                case 23 :
+                                                    echo 'Debit to Credit';
                                                 break;
                                             }
                                             echo '</td>';
@@ -204,6 +218,7 @@
             </div>
         </div>
     </main>
+        //TODO : add delete log and update log functionality.
     
     <!--JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

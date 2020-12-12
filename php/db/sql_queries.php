@@ -159,7 +159,21 @@
         $mysql_field = mysqli_real_escape_string($conn,$field);
         $mysql_amount = mysqli_real_escape_string($conn,$amount);
         //$sql = "insert into log (username,type,account,amount,description,balance_before,balance_after) VALUES ('$mysql_username',$mysql_type,$mysql_account,$mysql_amount,'$mysql_desc',$mysql_balance_before,$mysql_balance_after)";
-        $sql2 = "update user set $field=$field-$mysql_amount where username='$mysql_username'";
+        $sql2 = "update user set $mysql_field=$mysql_field-$mysql_amount where username='$mysql_username'";
+        return $sql2;
+    }
+    function update_user_transfer_bal($conn,$username,$tField,$fField,int $amount) {
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        $mysql_tField = mysqli_real_escape_string($conn,$tField);
+        $mysql_fField = mysqli_real_escape_string($conn,$fField);
+        $mysql_amount = mysqli_real_escape_string($conn,$amount);
+        //$sql = "insert into log (username,type,account,amount,description,balance_before,balance_after) VALUES ('$mysql_username',$mysql_type,$mysql_account,$mysql_amount,'$mysql_desc',$mysql_balance_before,$mysql_balance_after)";
+        if($mysql_tField=="credit_bal") {
+            $sql2 = "update user set $mysql_fField=$mysql_fField-$mysql_amount,$mysql_tField=$mysql_tField-$mysql_amount where username='$mysql_username'";
+        } else {
+            $sql2 = "update user set $mysql_fField=$mysql_fField-$mysql_amount,$mysql_tField=$mysql_tField+$mysql_amount where username='$mysql_username'";
+        }
         return $sql2;
     }
 ?>

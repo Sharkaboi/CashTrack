@@ -102,6 +102,28 @@ function validateSubAmount() {
     }
 }
 
+function validateTransferAmount() {
+    var amount = document.getElementById("transferAmount").value;
+    var desc = document.getElementById('transferDesc').value;
+    var fAccount = document.getElementById('transferFAccount').value;
+    var tAccount = document.getElementById('transferTAccount').value;
+    if(isEmptyOrBlank(amount)) {
+        alert("Amount must be filled out!");
+        return false;
+    } else if (amount <= 0) {
+        alert("Invalid amount!");
+        return false;
+    } else if(isEmptyOrBlank(desc)) {
+        alert("Invalid description");
+        return false;
+    }  else if(fAccount == tAccount) {
+        alert("To and From accounts can't be same");
+        return false;
+    } else {
+        return true;
+    }
+}
+
 function isEmptyOrBlank(string) {
     if(string == "" || string === "" || !string || /^\s*$/.test(string)) {
         return true;

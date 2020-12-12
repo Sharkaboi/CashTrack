@@ -15,3 +15,11 @@ $('#addAccount').change(function(){
         $('.add-credit-alert').collapse('hide');
     }
 });
+$('#transferTAccount').change(function(){
+    choice = $(this).val();
+    if(choice == 3) {
+        $('.transfer-credit-alert').collapse('show');
+    } else {
+        $('.transfer-credit-alert').collapse('hide');
+    }
+});
