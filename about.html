@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicon/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicon/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="./assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
@@ -23,7 +23,7 @@
     <meta name="msapplication-TileImage" content="./assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!--Other-->
-    <title>CashTrack</title>
+    <title> About</title>
     <!--CSS-->
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -34,17 +34,18 @@
     <!--Nav bar-->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="./index.html">
                 <img src="./assets/favicon/android-icon-36x36.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="">CashTrack <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="./index.html">CashTrack</a>
                     <a class="nav-item nav-link" href="./dashboard/">Dashboard</a>
-                    <a class="nav-item nav-link" href="./about.html">About</a>
+                    <a class="nav-item nav-link active" href="#">About <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="./faq.html">FAQ</a>
                     <a class="nav-item nav-link" href="./php/pages/signup.php">Sign Up</a>
                 </div>
@@ -52,63 +53,34 @@
         </nav>
     </header>
 
-    <!--Main page-->
     <main>
-        <div>
-
-            <!--First-->
-            <div class="container p-5">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <img src="./assets/illustrations/asset-1.png" class="image" alt="banner">
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <p>
-                            <h2>CashTrack</h2><br>
-                            CashTrack is your all in one place for expenses tracking. We provide an easy way to track/budget your expenses and help you to plan ahead. Sign Up to get started.
-                        </p>
-                        <div class="row">
-                            <div class="col-12 ">
-                                <a href="./php/pages/login.php" class="btn btn-primary mt-2 btn-lg btn-block">Sign In</a>
-                            </div>
-                            <div class="col-12">
-                                <a href="./php/pages/signup.php" class="btn btn-primary mt-2 btn-lg btn-block">Sign Up</a>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>                
+        <div class="container p-5">
+            <div class="text-center">
+                <h1>ABOUT US</h1>
+                CashTrack helps you in keeping track of your expenditure.
+                It shows you the amount you have in your balance of three types (Cash, Debit and Credit).
+                You can enter the details of all your transactions.
+                All the transactions will be shown in the history page.
+                You can later update or delete transaction data.
+                Various graphs showing the your expenditure will be displayed in the dashboard.
             </div>
-
-            <!--Second-->
-            <div class="container p-5">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <p>
-                            <h2>Worried about your spending habits?</h2> <br> 
-                            Use CashTrack to keep track of your expenses and control your habits. View graphical representation of your balance to know where you're spending the most. Forget about keeping track on paper!
-                        </p>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <img src="./assets/illustrations/asset-6.png" class="image" alt="banner">
-                    </div>
-                </div>
+            <div class="p-3">
+                <img src="./assets/illustrations/asset-13.png" alt="About Image" class="image">
             </div>
-                        
-            <!--Third-->
-            <div class="container p-5">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <img src="./assets/illustrations/asset-5.png" class="image" alt="banner">
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <p>
-                            <h2>Never forget again!</h2><br>
-                            Never over spend and deal with debt afterwards again nor have to deal with miscalculations or the human nature of being forgetful.</p>
-                    </div>
-                </div>
-            </div>
-
+            <div class="p-3 text-center">
+                <h3>Uses of CashTrack:</h3>
+                <ul>
+                    <li>It is devoid of human errors.</li>
+                    <li>It provides analytics of expenditure.</li>
+                    <li>Maintenance of physical record of expenditure is not required.</li>
+                    <li>It is more secure.</li>
+                    <li>It deprives the user of the difficulty involved in keeping the data in his/her memory.</li>
+                    <li>History of transactions can be viewed at any time.</li>
+                    <li>Motivates the user to have control over his/her spending habits.</li>
+                    <li>There would be no need to hire an account manager.</li>
+                    <li>This application is user-friendly.</li>
+                </ul>
+            </div> 
         </div>
     </main>
 

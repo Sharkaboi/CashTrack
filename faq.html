@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Meta Tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Favicons-->
+    <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./assets/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="./assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <title> FAQ</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/fontawesome.all.min.css">
+</head>
+
+<body>
+    <!--Nav bar-->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="./index.html">
+                <img src="./assets/favicon/android-icon-36x36.png" width="30" height="30"
+                    class="d-inline-block align-top" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link " href="./index.html">CashTrack</a>
+                    <a class="nav-item nav-link" href="./dashboard/">Dashboard</a>
+                    <a class="nav-item nav-link" href="./about.html">About</a>
+                    <a class="nav-item nav-link active" href="">FAQ <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="./php/pages/signup.php">Sign Up</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container p-5 text-center">
+        <h1 class="pb-3"> FREQUENTLY ASKED QUESTIONS </h1>
+        <img src="./assets/illustrations/asset-12.png" alt="FAQ Image" class="image">
+    </div>
+    
+    <div class="container p-3">
+        <ol type="1" class="list-group">
+            <li class="pb-3 list-group-item">
+                <b>How can I create an account in CashTrack?</b><br>
+                Click the "Sign up" button in the landing page. You will be directed to the Sign Up page. Fill in
+                all the details and submit. <br>
+                Congrats, your account has been created.
+            </li>
+            <li class="pb-3 list-group-item">
+                <b>Is CashTrack safe?</b> <br>
+                Yes, CashTrack is safe to use. Your account can be accessed only with your username and password.
+                Take special care not to share your password with ANYONE.
+            </li>
+            <li class="pb-3 list-group-item">
+                <b>How can I enter my transaction details?</b> <br>
+                Go to the Dashboard. Click on the + / - / transfer button at the bottom right corner. A pop-up appears, asking
+                the details of your transaction. Enter the details and then, click the "Ok" button. <br>
+                Congrats, your transaction details has been recorded.
+            </li>
+            <li class="pb-3 list-group-item">
+                <b>Where can I see my transaction history?</b> <br>
+                Click the "History" option in the Navigation Bar. You will be directed to the History page. There,
+                you can view the details of all your previous transactions.
+            </li>
+            <li class="pb-3 list-group-item">
+                <b>Can I alter my transaction history?</b> <br>
+                If you want to update the transaction details, click the pencil icon near the description. Input the
+                new description and submit. The transaction description will be updated. If you want to delete a transaction, click the
+                anti clockwise icon corresponding to the transaction that you want to delete. An alert box telling that the action is
+                irreversible, will appear on the screen. Click the "Ok" button if you want to confirm the action. If you want to clear
+                the whole transaction history, go to the Settings page from the Navigation Bar. Then, select the "Reset Data" option. All
+                the transactions will be deleted.
+            </li>
+            <li class="pb-3 list-group-item">
+                <b>Can I delete my account?</b> <br>
+                Yes. Select the "Settings" option in the Navigation Bar. You will enter the Settings page. Choose
+                "Delete Account". Your account will be deleted from our database. We shall not hold any of your data after the
+                deletion process.
+            </li>
+        </ol>
+    </div>
+
+    <!--Footer-->
+    <footer class="footer">
+        <div class="container text-center">
+            <span class="text-muted">© 2020 Copyright: Sarath S, Ashwin Cherukat</span>
+        </div>
+    </footer>
+
+    <!--JS-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  
+</body>
+</html>

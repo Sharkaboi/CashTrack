@@ -139,6 +139,11 @@ function getUpdatedDescription() {
     }
 }
 
+function undoTransactionConfirm() {
+    var confirmation = confirm("Are you sure to undo this transaction?");
+    return confirmation;
+}
+
 function isEmptyOrBlank(string) {
     if(string == "" || string === "" || !string || /^\s*$/.test(string)) {
         return true;

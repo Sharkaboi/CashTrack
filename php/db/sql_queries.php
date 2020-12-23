@@ -108,6 +108,11 @@
         $mysql_description = mysqli_real_escape_string($conn,$stripped_description);
         return "update log set description='$mysql_description' where log_id=$mysql_logId";
     }
+    function undo_log($conn,$logDate) {
+        $stripped_logDate = stripcslashes($logDate);
+        $mysql_logDate = mysqli_real_escape_string($conn,$stripped_logDate);
+        return "delete from log where log_date >= '$mysql_logDate'";
+    }
 
     //Relative statements
     function add_to_log($conn,$username,int $account,int $type,int $amount,$description,int $new_balance_before,int $new_balance_after) {

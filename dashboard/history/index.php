@@ -99,6 +99,7 @@
                                 <th scope="col">Description</th>
                                 <th scope="col">Balance Before</th>
                                 <th scope="col">Balance After</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -139,15 +140,15 @@
 
                                 function render_from_data($conn,$username,$currency,$result) {
                                     if(mysqli_num_rows($result)==0) {
-                                        echo '<tr><td colspan="7" class="text-center">No history available.</td></tr>';
+                                        echo '<tr><td colspan="8" class="text-center">No history available.</td></tr>';
                                     } else {
                                         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                                             $log_id = $row['log_id'];
                                             $type = $row['type'];
                                             $account = $row['account'];
                                             $amount = $row['amount'];
-                                            $date = $row['log_date'];
-                                            $phpdate = strtotime( $date );
+                                            $mysqlDate = $row['log_date'];
+                                            $phpdate = strtotime( $mysqlDate );
                                             $date = date('d/m/y g:i A', $phpdate );
                                             $desc = $row['description'];
                                             $balance_before = $row['balance_before'];
@@ -207,6 +208,13 @@
                                             echo '</td>';
                                             echo '<td>';
                                             echo $currency.$balance_after;
+                                            echo '</td>'; 
+                                            echo '<td>';
+                                            //Undo transaction button form
+                                            echo '<form action="../../php/routines/undo_log.php" onsubmit="return undoTransactionConfirm()" method="post">';
+                                            echo '<button type="submit" class="btn"><i class="fa fa-undo text-dark"></i></button>';
+                                            echo '<input type="hidden" value="'.$mysqlDate.'" name="logDate" id="logDate">';
+                                            echo '</form>';
                                             echo '</td>';                                    
                                             echo '</tr>';
                                         }
