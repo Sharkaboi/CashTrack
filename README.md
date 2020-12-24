@@ -5,17 +5,18 @@ A Web app to help manage your budget and expenses.
 ### [Check Deployment here.](https://cashtrk.000webhostapp.com/)
 
 ## Features   
-* Login
+* Log in/Sign up
 * Keep multiple wallets
-* Add/Subtract balances
+* Add/Subtract/Transfer balances
 * Show graphical representation of balance
+* View, search, update and delete history.
 * modify account settings
 
 ## Tech Stack
 * HTML/CSS/JS for static pages
 * Bootstrap for easy to use components
-* JQuery for dialogs
-* PHP for backend and login
+* JQuery for modal dialogs
+* PHP for server side backend
 * Mysql database
 * Google Charts for graphs
 * 000webhost for deployment
@@ -25,13 +26,17 @@ A Web app to help manage your budget and expenses.
 * [Ashwin Cherukat](https://github.com/LegolasGreenleaf1999) - UI/UX/Frontend
 
 ## Screenshots
-Home Page            |  Log in Page 
+Home Page            |  About Page 
 :-------------------------:|:-------------------------:
-![](assets/screenshots/Home%20Page.png)  |  ![](assets/screenshots/Login%20Page.png)
-Sign Up Page            |  Dashboard Page 
-![](assets/screenshots/Sign%20Up%20Page.png)  |  ![](assets/screenshots/Dashboard.png)
+![](assets/screenshots/Home%20Page.png)  |  ![](assets/screenshots/About%20Us.png)
+Log in Page            |   Sign Up Page
+![](assets/screenshots/Login%20Page.png)  |  ![](assets/screenshots/Sign%20Up%20Page.png)
+FAQ page            |  Dashboard Page 
+![](assets/screenshots/FAQ.png)  |  ![](assets/screenshots/Dashboard.png)
 Add Balance Dialog            |  Subtract balance dialog
 ![](assets/screenshots/Add%20to%20Balance.png)  |  ![](assets/screenshots/Subtract%20from%20balance.png)
+Transfer Balance Dialog            |  Settings Page
+![](assets/screenshots/Transfer%20Balance.png)  |  ![](assets/screenshots/Settings.png)
 History Page            |  404 Page 
 ![](assets/screenshots/History.png)  |  ![](assets/screenshots/404.png)
 
@@ -63,6 +68,17 @@ Folder structure          |
 * Backend coding - Setup up add and subtract balance.
 * Backend coding - Setup up history page with search.
 * Front-end coding - Added 404 page.
+* Backend coding - Added password change functionality.
+* Backend coding - Added currency prefix change functionality.
+* Backend coding - Added reset data functionality.
+* Backend coding - Added reset account functionality.
+* Backend coding - Added transfer balance functionality.
+* Backend coding - Added update description functionality.
+* Front-end coding - Added about page.
+* Front-end coding - Added FAQ page.
+* Backend coding - Added undo transaction functionality.
+* Testing - Fixed search, balance, update description bugs.
+* Deployment - Deployed to 000webhost.
 
 
 ## License 
