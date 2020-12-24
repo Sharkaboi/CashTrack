@@ -140,7 +140,7 @@ function getUpdatedDescription($logId) {
 }
 
 function undoTransactionConfirm() {
-    var confirmation = confirm("Are you sure to undo this transaction?");
+    var confirmation = confirm("Are you sure to undo this transaction?\nThis will remove all transactions done after the selected transaction aswell.");
     return confirmation;
 }
 

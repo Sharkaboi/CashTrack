@@ -108,10 +108,78 @@
         $mysql_description = mysqli_real_escape_string($conn,$stripped_description);
         return "update log set description='$mysql_description' where log_id=$mysql_logId";
     }
-    function undo_log($conn,$logDate) {
+    function get_logs_from($conn,$logDate) {
         $stripped_logDate = stripcslashes($logDate);
         $mysql_logDate = mysqli_real_escape_string($conn,$stripped_logDate);
-        return "delete from log where log_date >= '$mysql_logDate'";
+        return "select * from log where log_date >= '$mysql_logDate'";
+    }
+    function perform_undo_in_balance($conn,$type,$account,$amount,$username){
+        $stripped_type = stripcslashes($type);
+        $mysql_type = mysqli_real_escape_string($conn,$stripped_type);
+        $stripped_account = stripcslashes($account);
+        $mysql_account = mysqli_real_escape_string($conn,$stripped_account);
+        $stripped_amount = stripcslashes($amount);
+        $mysql_amount = mysqli_real_escape_string($conn,$stripped_amount);
+        $stripped_username = stripcslashes($username);
+        $mysql_username = mysqli_real_escape_string($conn,$stripped_username);
+        switch($mysql_account) {
+            case 1 :
+                // transaction on cash balance only (add/sub)
+                if($mysql_type == 1) {
+                    // added to cash, so subtract amount
+                    return "update user set cash_bal=cash_bal-'$mysql_amount' where username='$mysql_username'";
+                } else if($mysql_type == 2){
+                    // subtracted from cash, so add amount
+                    return "update user set cash_bal=cash_bal+'$mysql_amount' where username='$mysql_username'";
+                }
+            break;
+            case 2 :
+                // transaction on debit balance only (add/sub)
+                if($mysql_type == 1) {
+                    // added to debit, so subtract amount
+                    return "update user set debit_bal=debit_bal-'$mysql_amount' where username='$mysql_username'";
+                } else if($mysql_type == 2){
+                    // subtracted from debit, so add amount
+                    return "update user set debit_bal=debit_bal+'$mysql_amount' where username='$mysql_username'";
+                }
+            break;
+            case 3 :
+                // transaction on credit balance only (add/sub)
+                if($mysql_type == 1) {
+                    // added to credit, so subtract amount
+                    return "update user set credit_bal=credit_bal-'$mysql_amount' where username='$mysql_username'";
+                } else if($mysql_type == 2){
+                    // subtracted from credit, so add amount
+                    return "update user set credit_bal=credit_bal+'$mysql_amount' where username='$mysql_username'";
+                }
+            break;
+            case 12 :
+                // transaction from cash to debit (transfer)
+                // subtracted from cash and added to debit, so add to cash and subtract from debit
+                return "update user set cash_bal=cash_bal+'$mysql_amount',debit_bal=debit_bal-'$mysql_amount' where username='$mysql_username'";
+            break;
+            case 21 :
+                // transaction from debit to cash (transfer)
+                // subtracted from debit and added to cash, so add to debit and subtract from cash
+                return "update user set debit_bal=debit_bal+'$mysql_amount',cash_bal=cash_bal-'$mysql_amount' where username='$mysql_username'";
+            break;
+            case 13 :
+                // transaction from cash to credit (transfer)
+                // subtracted from cash and subtracted from credit (due), so add to cash and add to credit
+                return "update user set cash_bal=cash_bal+'$mysql_amount',credit_bal=credit_bal+'$mysql_amount' where username='$mysql_username'";
+            break;
+            case 23 :
+                // transaction from debit to credit (transfer)
+                // subtracted from debit and subtracted to credit (due), so add to debit and add from credit
+                return "update user set debit_bal=debit_bal+'$mysql_amount',credit_bal=credit_bal+'$mysql_amount' where username='$mysql_username'";
+            break;
+        }
+        
+    }
+    function remove_log_with_id($conn,$log_id){
+        $stripped_logId = stripcslashes($log_id);
+        $mysql_logId = mysqli_real_escape_string($conn,$stripped_logId);
+        return "delete from log where log_id='$mysql_logId'";
     }
 
     //Relative statements
