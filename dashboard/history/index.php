@@ -196,10 +196,10 @@
                                             echo '</td>';
                                             echo '<td>';
                                             //Update description button form
-                                            echo '<form action="../../php/routines/update_description.php" onsubmit="return getUpdatedDescription()" method="post">';
+                                            echo '<form action="../../php/routines/update_description.php" onsubmit="return getUpdatedDescription('.$log_id.')" method="post">';
                                             echo $desc;
-                                            echo '<input type="hidden" value="'.$desc.'" name="currentDesc" id="currentDesc">';
-                                            echo '<input type="hidden" value="'.$log_id.'" name="logId" id="logId">';
+                                            echo '<input type="hidden" value="'.$desc.'" name="currentDesc" id="currentDesc'.$log_id.'">';
+                                            echo '<input type="hidden" value="'.$log_id.'" name="logId" id="logId'.$log_id.'">';
                                             echo '<button type="submit" class="btn"><i class="fa fa-pencil-alt text-dark"></i></button>';
                                             echo '</form>';
                                             echo '</td>';

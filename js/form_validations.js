@@ -124,8 +124,8 @@ function validateTransferAmount() {
     }
 }
 
-function getUpdatedDescription() {
-    var currentDesc = document.getElementById("currentDesc");
+function getUpdatedDescription($logId) {
+    var currentDesc = document.getElementById("currentDesc".concat($logId));
     var updatedDesc = prompt("Edit Description");
     // stop form submit if no desc or same desc
     if(updatedDesc == null || updatedDesc==currentDesc.value){
