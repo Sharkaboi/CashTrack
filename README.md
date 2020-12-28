@@ -10,7 +10,8 @@ A Web app to help manage your budget and expenses.
 * Add/Subtract/Transfer balances
 * Show graphical representation of balance
 * View, search, update and delete history.
-* modify account settings
+* Modify account settings
+* Export as Excel spreadsheet
 
 ## Tech Stack
 * HTML/CSS/JS for static pages
@@ -78,6 +79,7 @@ Folder structure          |
 * Front-end coding - Added FAQ page.
 * Backend coding - Added undo transaction functionality.
 * Testing - Fixed search, balance, update description bugs.
+* Additional features - Added export as excel spreadsheet option.
 * Deployment - Deployed to 000webhost.
 
 

@@ -147,13 +147,17 @@
 
         <div class="container py-5">
             <div class="row mb-auto mt-auto">
-                <div class=" col-sm-12 col-md-6 text-center p-1">
+                <div class=" col-sm-12 col-md-4 text-center p-1">
                     <button class="btn btn-danger btn-lg m-1" onclick="confirmDeleteAccount()">Delete Account</button><br>
                     <small class="text-muted">Deletes your account permanently.</small>
                 </div>
-                <div class="col-sm-12 col-md-6 text-center p-1">
+                <div class="col-sm-12 col-md-4 text-center p-1">
                     <button class="btn btn-danger btn-lg m-1" onclick="confirmResetData()">Reset Data</button><br>
                     <small class="text-muted">This only deletes your price history and not your account.</small>
+                </div>
+                <div class="col-sm-12 col-md-4 text-center p-1">
+                    <button class="btn btn-success btn-lg m-1" onclick="exportAsExcel()">Export Data</button><br>
+                    <small class="text-muted">This exports all your transactions as an Excel spreadsheet.</small>
                 </div>
             </div>
         </div>

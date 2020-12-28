@@ -10,3 +10,6 @@ function confirmResetData() {
         window.location="http://localhost/php/routines/delete_data.php"   
     }
 }
+function exportAsExcel() {
+    window.location="http://localhost/php/routines/export_excel.php"   
+}
