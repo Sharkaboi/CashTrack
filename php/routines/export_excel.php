@@ -113,7 +113,7 @@
 
     $output .= '</tbody></table>';
 
-    $filename = "cashtrack_". $username . "_logs_" . date('Ymd') . ".xls";
+    $filename = "cashtrack_". $username . "_logs_" . date('Y_m_d') . ".xlsx";
     header('Content-Type: application/vnd.ms-excel');
     header('Content-Disposition: attachment; filename='.$filename);
     echo utf8_decode($output);
