@@ -55,7 +55,7 @@ Folder structure          |
 
 ## Workflow log
 * Requirement planning - Planned requirements for design and initial prototyping.
-* Initial Design - [Made in Adobe XD](https://xd.adobe.com/view/b3a25f63-7351-48d7-6755-3f443c68c410-c593/?fullscreen)
+* Initial Design - [Made in Adobe XD](https://github.com/Sharkaboi/CashTrack/tree/main/assets/design)
 * Resources Acquirement - Used free [Iconscout](https://iconscout.com/) illustrations and icons.
 *  Deployment setup with [000webhost](https://000webhost.com/).
 * [DB Schema design](https://github.com/Sharkaboi/CashTrack/blob/main/assets/screenshots/schema.png)
